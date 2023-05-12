@@ -1,5 +1,7 @@
-import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom"
-import { Layout } from "../layaout/Layout"
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { Layout } from '../layaout/Layout';
+
+import { LazyPage1, LazyPage2, LazyPage3 } from '../01-lazyload/pages';
 
 const router = createBrowserRouter([
   {
@@ -8,20 +10,20 @@ const router = createBrowserRouter([
     errorElement: <h1>Error no se encuentra</h1>,
     children: [
       {
-        path: 'about',
-        element: <h1>About page</h1>
+        path: 'lazy1',
+        element: <LazyPage1 />
       },
       {
-        path: 'users',
-        element: <h1>Users page</h1>
+        path: 'lazy2',
+        element: <LazyPage2 />
       },
       {
-        path: 'home',
-        element: <h1>Home page</h1>
+        path: 'lazy3',
+        element: <LazyPage3 />
       },
       {
         path: '/*',
-        element: <Navigate to='/home' replace />
+        element: <Navigate to='/lazy1' replace />
       }
     ]
   }
