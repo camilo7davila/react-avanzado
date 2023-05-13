@@ -1,7 +1,10 @@
+import { lazy, Suspense } from 'react';
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { Layout } from '../layaout/Layout';
 
-import { LazyPage1, LazyPage2, LazyPage3 } from '../01-lazyload/pages';
+const Lazy1 = lazy(() => import(/* webpackChunkName: "page1" */'../01-lazyload/pages/LazyPage1'));
+const Lazy2 = lazy(() => import(/* webpackChunkName: "page2" */'../01-lazyload/pages/LazyPage2'));
+const Lazy3 = lazy(() => import(/* webpackChunkName: "page3" */'../01-lazyload/pages/LazyPage3'));
 
 const router = createBrowserRouter([
   {
@@ -10,16 +13,20 @@ const router = createBrowserRouter([
     errorElement: <h1>Error no se encuentra</h1>,
     children: [
       {
+        path: '',
+        element: <Navigate to='/lazy' replace />
+      },
+      {
         path: 'lazy1',
-        element: <LazyPage1 />
+        element: <Lazy1 />
       },
       {
         path: 'lazy2',
-        element: <LazyPage2 />
+        element: <Lazy2 />
       },
       {
         path: 'lazy3',
-        element: <LazyPage3 />
+        element: <Lazy3 />
       },
       {
         path: '/*',
@@ -29,11 +36,14 @@ const router = createBrowserRouter([
   }
 ])
 
+
 export const Navigation = () => {
   return (
     <>
       <div className="main-layout">
-        <RouterProvider router={router} />
+        <Suspense fallback={null}>
+          <RouterProvider router={router} />
+        </Suspense>
       </div>
     </>
   )
