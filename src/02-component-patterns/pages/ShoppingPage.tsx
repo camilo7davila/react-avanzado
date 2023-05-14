@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react"
-import { ProductButtons, ProductCard, ProductImage, ProductTitle } from "../components"
+import { useEffect, useState } from 'react'
+import { ProductButtons, ProductCard, ProductImage, ProductTitle } from '../components'
+import '../styles/custom-styles.css'
 
 const product = {
   id: '1',
@@ -18,7 +19,7 @@ export const ShoppingPage = () => {
       setImageExample('')
     }, 5000);
   }, [])
-  
+
 
   return (
     <div>
@@ -37,10 +38,27 @@ export const ShoppingPage = () => {
           <ProductButtons />
         </ProductCard>
 
-        <ProductCard product={product}>
-          <ProductImage img={imageExample} />
+        <ProductCard
+          product={product}
+          className='bg-dark text-white'
+        >
+          <ProductImage img={imageExample} className='custom-image' />
+          <ProductTitle title={titleExample} className='text-bold' />
+          <ProductButtons className='custom-buttons' />
+        </ProductCard>
+
+        <ProductCard
+          product={product}
+          style={{
+            backgroundColor: '#70D1F8'
+          }}
+        >
+          <ProductImage img={imageExample} style={{}} />
           <ProductTitle title={titleExample} />
-          <ProductButtons />
+          <ProductButtons style={{
+            display: 'flex',
+            justifyContent: 'end'
+          }}/>
         </ProductCard>
       </div>
     </div>
