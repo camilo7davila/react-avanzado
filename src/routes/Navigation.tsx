@@ -1,5 +1,6 @@
 import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom"
 import { Layout } from "../layaout/Layout"
+import { ShoppingPage } from "../02-component-patterns/pages/ShoppingPage"
 
 const router = createBrowserRouter([
   {
@@ -7,6 +8,10 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <h1>Error no se encuentra</h1>,
     children: [
+      {
+        index: true,
+        element: <Navigate to='/shopping' replace />
+      },
       {
         path: 'about',
         element: <h1>About page</h1>
@@ -16,12 +21,12 @@ const router = createBrowserRouter([
         element: <h1>Users page</h1>
       },
       {
-        path: 'home',
-        element: <h1>Home page</h1>
+        path: 'shopping',
+        element: <ShoppingPage />
       },
       {
         path: '/*',
-        element: <Navigate to='/home' replace />
+        element: <Navigate to='/shopping' replace />
       }
     ]
   }
