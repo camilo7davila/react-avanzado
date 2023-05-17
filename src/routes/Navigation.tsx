@@ -1,5 +1,9 @@
-import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom"
-import { Layout } from "../layaout/Layout"
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Layout } from '../layaout/Layout';
+import { RegisterPage } from '../03-forms/pages/RegisterPage';
+import { FormikBasicPage } from '../03-forms/pages/FormikBasicPage';
+import { FormikYupPage } from '../03-forms/pages/FormikYupPage';
+import { FormikComponents } from '../03-forms/pages/FormikComponents';
 
 const router = createBrowserRouter([
   {
@@ -8,20 +12,28 @@ const router = createBrowserRouter([
     errorElement: <h1>Error no se encuentra</h1>,
     children: [
       {
-        path: 'about',
-        element: <h1>About page</h1>
+        index: true,
+        element: <Navigate to='/register' replace />
       },
       {
-        path: 'users',
-        element: <h1>Users page</h1>
+        path: 'register',
+        element: <RegisterPage />
       },
       {
-        path: 'home',
-        element: <h1>Home page</h1>
+        path: 'formik-basic',
+        element: <FormikBasicPage />
+      },
+      {
+        path: 'formik-yup',
+        element: <FormikYupPage />
+      },
+      {
+        path: 'formik-components',
+        element: <FormikComponents />
       },
       {
         path: '/*',
-        element: <Navigate to='/home' replace />
+        element: <Navigate to='/register' replace />
       }
     ]
   }
@@ -30,7 +42,7 @@ const router = createBrowserRouter([
 export const Navigation = () => {
   return (
     <>
-      <div className="main-layout">
+      <div className='main-layout'>
         <RouterProvider router={router} />
       </div>
     </>
